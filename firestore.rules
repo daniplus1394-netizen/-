@@ -1,0 +1,18 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Global Safety Net: Catch-all default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Secure user-specific backups
+    match /user_backups/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow create, update: if request.auth != null && request.auth.uid == userId
+        && request.resource.data.keys().hasAll(['settings', 'dhikrs', 'bookmarks', 'updatedAt'])
+        && request.resource.data.keys().size() == 5; // settings, dhikrs, bookmarks, updatedAt, and optional fields
+      allow delete: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

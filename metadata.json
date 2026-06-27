@@ -1,0 +1,6 @@
+{
+  "name": "ابو الفضل العباس",
+  "description": "برنامه مذهبی ابو الفضل العباس شامل صلوات‌شمار، قرآن کامل، ذکر روز، تم‌های شیشه مایع و پشتیبان‌گیری ابری",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

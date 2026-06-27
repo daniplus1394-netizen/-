@@ -1,0 +1,34 @@
+{
+  "entities": {
+    "UserBackup": {
+      "title": "User Backup",
+      "description": "Stores user customization, themes, dhikr counters, and bookmarks for synchronization",
+      "type": "object",
+      "properties": {
+        "settings": {
+          "type": "object",
+          "description": "User preferences including themes, glass transparency, fonts, and sound"
+        },
+        "dhikrs": {
+          "type": "array",
+          "description": "List of active and historical dhikr and salawat counters"
+        },
+        "bookmarks": {
+          "type": "array",
+          "description": "Bookmarked surahs and verses from Quran"
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Timestamp of the last cloud synchronization"
+        }
+      },
+      "required": ["settings", "dhikrs", "bookmarks", "updatedAt"]
+    }
+  },
+  "firestore": {
+    "/user_backups/{userId}": {
+      "schema": "UserBackup",
+      "description": "User specific secure backup of settings and religious counters"
+    }
+  }
+}
